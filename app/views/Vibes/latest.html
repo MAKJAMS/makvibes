@@ -1,11 +1,10 @@
 #{extends 'main.html' /}
 #{set title:'MakVibes' /}
 
-
 #{form @Vibes.save()}
 <div class="well">
-    <textarea name="vibe.message" id="message" placeholder="what's on your mind?"></textarea>
-    <p class="buttons"><input type="submit" value="Update"></p>
+    <textarea name="vibe.message" id="message" placeholder="what's on your mind?" cols="70" rows="2"></textarea>
+    <p><input type="submit" value="Update"></p>
 </div>
 #{/form}
 

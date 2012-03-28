@@ -8,7 +8,7 @@ import java.util.List;
 import static controllers.Application.connectedUser;
 
 public class Vibes extends Controller{
-    
+
     public static void latest(){
        List<Vibe> vibes =  Vibe.findAll();
        render(vibes);

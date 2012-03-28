@@ -7,7 +7,7 @@ GET     /register                               Users.register
 
 GET     /vibes                                  Vibes.latest
 POST    /vibes                                  Vibes.save
-
+GET     /logout                                 Users.logout
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

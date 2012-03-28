@@ -8,7 +8,7 @@ import play.mvc.Controller;
 public class Application extends Controller {
     
     @Before
-    static void addUser() {
+    static void addUserToSession() {
         User user = connectedUser();
         if(user != null) {
             renderArgs.put("user", user);
