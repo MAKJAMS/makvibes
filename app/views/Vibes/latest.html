@@ -1,16 +1,18 @@
 #{extends 'main.html' /}
 #{set title:'MakVibes' /}
 
-#{form @save()}
+#{form @save(), class:"well form-inline"}
 <div class="well" id="newMessage">
-    <input type="hidden" name="vibe.author" value="${user.name}">
+    <input type="hidden" name="vibe.author" value="${user?.name}">
     #{field 'vibe.message'}
     <p class="${field.errorClass}">
-        <input type="text" name="${field.name}" id="message" placeholder="what's on your mind?" value="${vibe?.message}"/>
-        <span class="error">${field.error}</span>
+        <input class="input-small" type="text" name="${field.name}" id="message" placeholder="what's on your mind?" value="${vibe?.message}"/>
+        <input class="btn" type="submit" value="Update">
+
     </p>
+    <span class="error">${field.error}</span>
     #{/field}
-    <input class="inline" type="submit" value="Update">
+
 </div>
 #{/form}
 
@@ -24,7 +26,7 @@
       <blockquote>
           <p id="vibe${vibe.id}">${vibe.message}
               <small>
-                  #{if user.hasModeratorAccess()}<span class="author">${vibe.author}, </span>#{/if}${vibe.postedOn.since()}
+                  #{if user?.hasModeratorAccess()}<span class="author">${vibe.author}, </span>#{/if}${vibe.postedOn.since()}
               </small>
           </p>
       </blockquote>
