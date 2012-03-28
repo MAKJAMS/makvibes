@@ -10,3 +10,4 @@ models.User(demo):
 
 models.Vibe(vibe1):
     message:    blah blah
+    postedBy:   gavin

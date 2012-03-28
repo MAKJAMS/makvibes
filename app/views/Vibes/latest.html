@@ -16,7 +16,7 @@
 <div class="row">
 #{list vibes, as:'vibe'}
   <span class="span3 well">
-      <blockquote><p>${vibe.message}<small>John Doe, ${vibe.postedOn.since()}</small></p></blockquote>
+      <blockquote><p>${vibe.message}<small>${vibe.postedBy.name}, ${vibe.postedOn.since()}</small></p></blockquote>
   </span>
 #{/list}
 </div>

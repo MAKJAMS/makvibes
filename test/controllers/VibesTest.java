@@ -2,7 +2,9 @@ package controllers;
 
 import models.Vibe;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import play.test.Fixtures;
 import play.test.FunctionalTest;
 
 import java.util.HashMap;
@@ -12,6 +14,11 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static play.mvc.Http.Response;
 
 public class VibesTest extends FunctionalTest {
+
+    @Before
+    public void setUp() {
+        Fixtures.deleteDatabase();
+    }
 
     @Test
     public void shouldRedirectToLatestAfterSave() {

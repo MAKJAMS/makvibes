@@ -3,6 +3,7 @@ package models;
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
 @Entity
@@ -10,6 +11,8 @@ public class Vibe extends Model {
 
     private String message;
     private Date postedOn;
+    @ManyToOne
+    private User postedBy;
 
     public Vibe(){
         this.postedOn = new Date();
@@ -31,4 +34,11 @@ public class Vibe extends Model {
         this.postedOn = postedOn;
     }
 
+    public User getPostedBy() {
+        return postedBy;
+    }
+
+    public void setPostedBy(User postedBy) {
+        this.postedBy = postedBy;
+    }
 }

@@ -5,6 +5,8 @@ import play.mvc.Controller;
 
 import java.util.List;
 
+import static controllers.Application.connectedUser;
+
 public class Vibes extends Controller{
     
     public static void latest(){
@@ -13,6 +15,7 @@ public class Vibes extends Controller{
     }
 
     public static void save(Vibe vibe){
+       vibe.setPostedBy(connectedUser());
        vibe.create();
        latest();
     }
