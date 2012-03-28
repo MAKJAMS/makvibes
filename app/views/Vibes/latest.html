@@ -1,0 +1,22 @@
+#{extends 'main.html' /}
+#{set title:'MakVibes' /}
+
+
+#{form @Vibes.save()}
+<div class="well">
+    <textarea name="vibe.message" id="message" placeholder="what's on your mind?"></textarea>
+    <p class="buttons"><input type="submit" value="Update"></p>
+</div>
+#{/form}
+
+<div class="page-header">
+    <h1>Latest Vibes</h1>
+</div>
+
+<div class="row">
+#{list vibes, as:'vibe'}
+  <span class="span3 well">
+      <blockquote><p>${vibe.message}<small>John Doe, ${vibe.postedOn.since()}</small></p></blockquote>
+  </span>
+#{/list}
+</div>
