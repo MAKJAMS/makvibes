@@ -2,9 +2,9 @@
 #{set title:'MakVibes' /}
 
 #{form @Vibes.save()}
-<div class="well">
-    <textarea name="vibe.message" id="message" placeholder="what's on your mind?" cols="70" rows="2"></textarea>
-    <p><input type="submit" value="Update"></p>
+<div class="well" id="newMessage">
+    <input type ="text" name="vibe.message" id="message" placeholder="what's on your mind?" />
+    <input type="submit" value="Update">
 </div>
 #{/form}
 

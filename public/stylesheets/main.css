@@ -164,6 +164,10 @@ form .buttons {
     margin-top: 20px;
 }
 
+#newMessage #message {
+    width: 70%;
+    padding: 5px;
+}
 /** Footer **/
 
 #footer {
