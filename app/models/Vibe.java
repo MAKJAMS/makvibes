@@ -5,6 +5,7 @@ import play.db.jpa.Model;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Vibe extends Model {
@@ -40,5 +41,9 @@ public class Vibe extends Model {
 
     public void setPostedBy(User postedBy) {
         this.postedBy = postedBy;
+    }
+
+    public static List<Vibe> findAllVibes(){
+        return Vibe.findAll();
     }
 }

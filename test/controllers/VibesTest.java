@@ -8,8 +8,10 @@ import play.test.Fixtures;
 import play.test.FunctionalTest;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static play.mvc.Http.Response;
 
@@ -17,7 +19,8 @@ public class VibesTest extends FunctionalTest {
 
     @Before
     public void setUp() {
-        Fixtures.deleteDatabase();
+        Fixtures.deleteAllModels();
+        Fixtures.loadModels("data.yml");
     }
 
     @Test
@@ -35,5 +38,14 @@ public class VibesTest extends FunctionalTest {
 
         Vibe savedVibe = Vibe.find("byMessage", "TheMessage").first();
         Assert.assertThat(savedVibe, notNullValue());
+    }
+
+    @Test
+    public void shouldFindAllMessages(){
+        GET("/vibes");
+        List<Vibe> vibes = (List<Vibe>) renderArgs("vibes");
+        Assert.assertThat(vibes.size(), equalTo(2));
+        Assert.assertThat(vibes.get(0).getMessage() , equalTo("blah blah"));
+        Assert.assertThat(vibes.get(1).getMessage() , equalTo("random message"));
     }
 }

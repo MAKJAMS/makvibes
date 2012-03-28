@@ -1,15 +1,16 @@
 package controllers;
 
 import models.User;
+import models.Vibe;
 import play.data.validation.Valid;
+
+import java.util.List;
 
 public class Users extends Application {
 
 	public static void index(){
-        if(connectedUser() != null) {
-            Vibes.latest();
-        }
-        render();
+        List<Vibe> vibes =  Vibe.findAllVibes();
+        render(vibes);
 	}
 
 	public static void register() {

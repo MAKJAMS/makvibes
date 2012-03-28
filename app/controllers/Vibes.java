@@ -6,7 +6,7 @@ import java.util.List;
 public class Vibes extends Application {
 
     public static void latest(){
-       List<Vibe> vibes =  Vibe.findAll();
+       List<Vibe> vibes =  Vibe.findAllVibes();
        render(vibes);
     }
 
