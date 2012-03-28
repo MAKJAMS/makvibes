@@ -45,7 +45,7 @@ public class VibesTest extends FunctionalTest {
         GET("/vibes");
         List<Vibe> vibes = (List<Vibe>) renderArgs("vibes");
         Assert.assertThat(vibes.size(), equalTo(2));
-        Assert.assertThat(vibes.get(0).getMessage() , equalTo("blah blah"));
-        Assert.assertThat(vibes.get(1).getMessage() , equalTo("random message"));
+        Assert.assertThat(vibes.get(0).getMessage() , equalTo("Welcome all, how awesome is this?"));
+        Assert.assertThat(vibes.get(1).getMessage() , equalTo("What is going to happen on Friday?"));
     }
 }

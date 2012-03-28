@@ -1,15 +1,36 @@
-models.User(gavin):
-    username:   guillaume
-    password:   foobar
-    name:       Guillaume Bort
 
-models.User(demo):
-    username:   demo
-    password:   demo
-    name:       Demo User
+User(demo):
+    username:       demo
+    password:       demo
+    name:           Demo User
+    role:           default
 
-models.Vibe(vibe1):
-    message:    blah blah
+User(bob):
+    username:       bob
+    password:       secret
+    name:           Bob
+    role:
+        roleName:   default
 
-models.Vibe(vibe2):
-    message:    random message
+User(sally):
+    username:       sally
+    password:       secret
+    name:           Sally
+    role:
+        roleName:   student leader
+
+User(joe):
+    username:       joe
+    password:       secret
+    name:           Joe
+    role:           admin
+
+Vibe(message1):
+    message:        Welcome all, how awesome is this?
+    postedOn:       2009-05-10
+    author:         Timothy Smith
+
+Vibe(message2):
+    message:        What is going to happen on Friday?
+    postedOn:       2012-03-03
+    author:         Jane Gorman

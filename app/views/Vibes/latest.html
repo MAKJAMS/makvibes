@@ -15,7 +15,13 @@
 <div class="row">
 #{list vibes, as:'vibe'}
   <span class="span3 well">
-      <blockquote><p>${vibe.message}<small>John Doe, ${vibe.postedOn.since()}</small></p></blockquote>
+      <blockquote>
+          <p id="vibe${vibe.id}">${vibe.message}
+              <small>
+                  #{if user.hasModeratorAccess()}<span class="author">${vibe.author}, </span>#{/if}${vibe.postedOn.since()}
+              </small>
+          </p>
+      </blockquote>
   </span>
 #{/list}
 </div>
