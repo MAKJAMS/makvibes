@@ -23,6 +23,7 @@ public class Users extends Application {
         if(validation.hasErrors()) {
             render("@register", user, verifyPassword);
         }
+        user.useDefaultRole();
         user.create();
         saveUserDetailsInSession(user);
         flash.success("Welcome, " + user.getName());
@@ -51,7 +52,6 @@ public class Users extends Application {
         index();
     }
 
-    
     private static void saveUserDetailsInSession(User user){
         session.put("user", user.getUsername());
         session.put("logged", user.id);

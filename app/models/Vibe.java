@@ -1,5 +1,7 @@
 package models;
 
+import play.data.validation.MaxSize;
+import play.data.validation.Required;
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
@@ -9,9 +11,14 @@ import java.util.List;
 @Entity
 public class Vibe extends Model {
 
+    @Required
+    @MaxSize(140)
     private String message;
+
     private Date postedOn;
-    private String author = "John Doe";
+
+    @Required
+    private String author;
 
     public Vibe(){
         this.postedOn = new Date();

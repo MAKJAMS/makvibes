@@ -1,10 +1,16 @@
 #{extends 'main.html' /}
 #{set title:'MakVibes' /}
 
-#{form @Vibes.save()}
+#{form @save()}
 <div class="well" id="newMessage">
-    <input type ="text" name="vibe.message" id="message" placeholder="what's on your mind?" />
-    <input type="submit" value="Update">
+    <input type="hidden" name="vibe.author" value="${user.name}">
+    #{field 'vibe.message'}
+    <p class="${field.errorClass}">
+        <input type="text" name="${field.name}" id="message" placeholder="what's on your mind?" value="${vibe?.message}"/>
+        <span class="error">${field.error}</span>
+    </p>
+    #{/field}
+    <input class="inline" type="submit" value="Update">
 </div>
 #{/form}
 

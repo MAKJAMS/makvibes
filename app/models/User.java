@@ -27,7 +27,7 @@ public class User extends Model {
 
     @Embedded
     public Role role;
-    
+
     @Required
     @MaxSize(100)
     private String name;
@@ -67,4 +67,18 @@ public class User extends Model {
     public void setName(String name) {
         this.name = name;
     }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void useDefaultRole() {
+        this.role = Role.DEFAULT;
+    }
+
+    
 }

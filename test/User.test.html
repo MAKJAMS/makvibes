@@ -1,0 +1,24 @@
+*{ You can use plain selenium command using the selenium tag }*
+
+#{fixture delete:'all', load:'data.yml' /}
+
+#{selenium 'Register'}
+    clearSession()
+
+    //Given a user has not previously registered
+    open('/')
+	assertTextPresent('Login Name:')
+	clickAndWait('register')
+
+    //When they fill in the registration form
+    type('username', 'jessica')
+    type('name', 'jessica')
+    type('password', 'password')
+    type('verifyPassword', 'password')
+    clickAndWait('register')
+
+    //Then the user should be registered and logged in
+    assertTextPresent('Welcome to Mak Vibes')
+    assertTextPresent('Welcome, jessica')
+
+#{/selenium}

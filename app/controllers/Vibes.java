@@ -1,7 +1,7 @@
 package controllers;
 
 import models.Vibe;
-import play.mvc.Controller;
+import play.data.validation.Valid;
 
 import java.util.List;
 
@@ -12,7 +12,11 @@ public class Vibes extends Application{
        render(vibes);
     }
 
-    public static void save(Vibe vibe){
+    public static void save(@Valid Vibe vibe){
+        if(validation.hasErrors()) {
+            List<Vibe> vibes =  Vibe.findAll();
+            render("@latest", vibe, vibes);
+        }
        vibe.create();
        latest();
     }

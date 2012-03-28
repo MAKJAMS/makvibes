@@ -6,29 +6,29 @@
 #{form @saveUser()}
     #{field 'user.username'}
         <p class="${field.errorClass}">
-            <strong>Username:</strong> <input type="text" name="${field.name}" size="16" value="${user?.username}"> *
+            <strong>Username:</strong> <input id="username" type="text" name="${field.name}" size="16" value="${user?.username}"> *
             <span class="error">${field.error}</span>
         </p>
     #{/field}
     #{field 'user.name'}
         <p class="${field.errorClass}">
-            <strong>Real name:</strong> <input type="text" name="${field.name}" size="16" value="${user?.name}"> *
+            <strong>Real name:</strong> <input id="name" type="text" name="${field.name}" size="16" value="${user?.name}"> *
             <span class="error">${field.error}</span>
         </p>
     #{/field}
     #{field 'user.password'}
         <p class="${field.errorClass}">
-            <strong>Password:</strong> <input type="password" name="${field.name}" size="16" value="${user?.password}"> *
+            <strong>Password:</strong> <input id="password" type="password" name="${field.name}" size="16" value="${user?.password}"> *
             <span class="error">${field.error}</span>
         </p>
     #{/field}
     #{field 'verifyPassword'}
         <p class="${field.errorClass}">
-            <strong>Verify password:</strong> <input type="password" name="${field.name}" size="16" value="${verifyPassword}"> *
+            <strong>Verify password:</strong> <input id="verifyPassword" type="password" name="${field.name}" size="16" value="${verifyPassword}"> *
             <span class="error">${field.error}</span>
         </p>
     #{/field}    
     <p class="buttons">
-        <input type="submit" value="Register"> <a href="@{index()}">Cancel</a>    
+        <input id="register" type="submit" value="Register"> <a href="@{index()}">Cancel</a>
     </p>
 #{/form}

@@ -15,15 +15,9 @@ User(bob):
 User(sally):
     username:       sally
     password:       secret
-    name:           Sally
+    name:           Sally Peters
     role:
         roleName:   student leader
-
-User(joe):
-    username:       joe
-    password:       secret
-    name:           Joe
-    role:           admin
 
 Vibe(message1):
     message:        Welcome all, how awesome is this?

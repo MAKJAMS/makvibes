@@ -175,3 +175,7 @@ form .buttons {
     border-top: 1px dotted #ccc;
     text-align: center;
 }
+
+.inline {
+    display: inline;
+}

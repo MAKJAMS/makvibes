@@ -25,7 +25,11 @@ public class VibesTest extends FunctionalTest {
 
     @Test
     public void shouldRedirectToLatestAfterSave() {
-        Response response = POST("/vibes");
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("vibe.message", "TheMessage");
+        parameters.put("vibe.author", "author");
+        Response response = POST("/vibes", parameters);
+
         assertStatus(302, response);
         assertHeaderEquals("Location", "/vibes", response);
     }
@@ -34,6 +38,7 @@ public class VibesTest extends FunctionalTest {
     public void shouldSaveMessage() {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("vibe.message", "TheMessage");
+        parameters.put("vibe.author", "author");
         POST("/vibes", parameters);
 
         Vibe savedVibe = Vibe.find("byMessage", "TheMessage").first();

@@ -1,5 +1,6 @@
 package models;
 
+import org.junit.Assert;
 import org.junit.Test;
 import play.test.UnitTest;
 
@@ -14,5 +15,12 @@ public class UserTest extends UnitTest{
         User user = new User("user", "password", "username", role);
         user.hasModeratorAccess();
         verify(role).hasModeratorAccess();
+    }
+
+    @Test
+    public void shouldUseDefaultRole() {
+        User user = new User("user", "password", "username", null);
+        user.useDefaultRole();
+        Assert.assertEquals("default", user.getRole().toString());
     }
 }

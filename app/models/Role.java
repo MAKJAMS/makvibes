@@ -1,14 +1,12 @@
 package models;
 
 import javax.persistence.Embeddable;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Embeddable
 public class Role{
 
-    private static String moderatorRole = "Student Leader";
+    protected static final Role DEFAULT = new Role("default");
+    private static String MODERATOR_ROLE = "Student Leader";
 
     public String roleName;
 
@@ -17,6 +15,11 @@ public class Role{
     }
 
     public boolean hasModeratorAccess() {
-        return moderatorRole.equalsIgnoreCase(roleName);
+        return MODERATOR_ROLE.equalsIgnoreCase(roleName);
+    }
+
+    @Override
+    public String toString() {
+        return roleName;
     }
 }
