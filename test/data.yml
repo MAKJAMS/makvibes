@@ -1,7 +1,15 @@
-# you describe your data using the YAML notation here
-# and then load them using Fixtures.load("data.yml")
+models.User(gavin):
+    username:   guillaume
+    password:   foobar
+    name:       Guillaume Bort
 
-# User(bob):
-#   email: bob@gmail.com
-#   password: secret
-#   fullname: Bob
+models.User(demo):
+    username:   demo
+    password:   demo
+    name:       Demo User
+
+models.Vibe(vibe1):
+    message:    blah blah
+
+models.Vibe(vibe2)
+    message:    random message
