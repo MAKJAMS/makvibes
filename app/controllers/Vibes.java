@@ -5,7 +5,7 @@ import play.mvc.Controller;
 
 import java.util.List;
 
-public class Vibes extends Controller{
+public class Vibes extends Application{
     
     public static void latest(){
        List<Vibe> vibes =  Vibe.findAll();

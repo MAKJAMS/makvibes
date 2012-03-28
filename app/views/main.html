@@ -4,15 +4,42 @@
     <head>
         <title>#{get 'title' /}</title>
         <meta charset="${_response_encoding}">
-        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/bootstrap.css'}">
+        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
+        *{<link rel="stylesheet" media="screen" href="@{'/public/stylesheets/bootstrap.css'}">}*
         #{get 'moreStyles' /}
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
         <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
         #{get 'moreScripts' /}
     </head>
     <body>
-        <div class="container">
-            #{doLayout /}
+    <div id="header">
+        <h1>Welcome to Mak Vibes!</h1>
+    #{if user?.id}
+        <div id="options">
+            Connected as ${user.username}
+            |
+            <a href="@{Users.logout()}">Logout</a>
         </div>
+    #{/if}
+    </div>
+
+    <div id="content">
+    #{if flash.error}
+        <p class="fError">
+            <strong>${flash.error}</strong>
+        </p>
+    #{/if}
+    #{if flash.success}
+        <p class="fSuccess">
+            <strong>${flash.success}</strong>
+        </p>
+    #{/if}
+
+    #{doLayout /}
+    </div>
+
+    <div id="footer">
+        &copy; Makerere
+    </div>
     </body>
 </html>
