@@ -18,15 +18,15 @@ public class User extends Model {
     @MaxSize(15)
     @MinSize(4)
     @Match(value="^\\w*$", message="Not a valid username")
-    public String username;
+    private String username;
 
     @Required
     @MaxSize(15)
     @MinSize(5)
-    public String password;
+    private String password;
 
     @Embedded
-    public Role role;
+    private Role role;
 
     @Required
     @MaxSize(100)
@@ -74,6 +74,10 @@ public class User extends Model {
 
     public Role getRole() {
         return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public void useDefaultRole() {
