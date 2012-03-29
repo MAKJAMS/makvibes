@@ -8,6 +8,9 @@ models.User(demo):
     password:   demo
     name:       Demo User
 
+models.Tag(elections):
+    name:       elections
+
 models.Vibe(vibe1):
     message:    blah blah
     postedBy:   gavin
@@ -15,3 +18,9 @@ models.Vibe(vibe1):
 models.Vibe(vibe2):
     message:    random message
     postedBy:   demo
+
+models.Vibe(vibe3):
+    message:    "heading to #elections!"
+    postedBy:   gavin
+    tags:
+    - elections

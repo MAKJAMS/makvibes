@@ -2,10 +2,14 @@ package models;
 
 import play.db.jpa.Model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Vibe extends Model {
@@ -14,11 +18,21 @@ public class Vibe extends Model {
     private Date postedOn;
     @ManyToOne
     private User postedBy;
+    @ManyToMany(cascade= CascadeType.PERSIST)
+    public Set<Tag> tags;
+
 
     public Vibe(){
         this.postedOn = new Date();
+        this.tags = new HashSet<Tag>();
     }
-    
+
+    @Override
+    public Vibe save(){
+        tags.addAll(Tag.extractFrom(message));
+        return super.save();
+    }
+
     public String getMessage() {
         return message;
     }
@@ -45,5 +59,13 @@ public class Vibe extends Model {
 
     public static List<Vibe> findAllVibes(){
         return Vibe.findAll();
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void tagWith(String tag) {
+        this.tags.add(Tag.findOrCreate(tag));
     }
 }

@@ -8,6 +8,13 @@
 </div>
 #{/form}
 
+<div class="tag-cloud">
+    <span class="span2"><h6>Top Vibes: </h6></span>
+    #{list tagCloud, as:'tag'}
+    <span class="cloud-label">${tag}</span>
+    #{/list}
+</div>
+
 <div class="page-header">
     <h1>Vibes</h1>
 </div>

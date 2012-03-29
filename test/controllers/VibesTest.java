@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Tag;
 import models.Vibe;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static play.mvc.Http.Response;
 
@@ -44,8 +46,17 @@ public class VibesTest extends FunctionalTest {
     public void shouldFindAllMessages(){
         GET("/vibes");
         List<Vibe> vibes = (List<Vibe>) renderArgs("vibes");
-        Assert.assertThat(vibes.size(), equalTo(2));
+        Assert.assertThat(vibes.size(), equalTo(3));
         Assert.assertThat(vibes.get(0).getMessage() , equalTo("blah blah"));
         Assert.assertThat(vibes.get(1).getMessage() , equalTo("random message"));
+    }
+
+    @Test
+    public void shouldIncludeTagCloudWhenRenderingLatestVibes(){
+        GET("/vibes");
+        
+        List<Tag> tagCloud = (List<Tag>) renderArgs("tagCloud");
+        Assert.assertThat(tagCloud, notNullValue());
+        Assert.assertThat(tagCloud.size(), is(lessThanOrEqualTo(10)));
     }
 }

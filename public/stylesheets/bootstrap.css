@@ -3987,3 +3987,18 @@ a.thumbnail:hover {
 .invisible {
   visibility: hidden;
 }
+
+.tag-cloud {
+  background-color: #DFF0D8;
+  border-color: #D6E9C6;
+  color: #468847;
+  border-radius: 4px 4px 4px 4px;
+  margin-bottom: 18px;
+  padding: 8px 35px 8px 14px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.cloud-label {
+  color: #999999;
+  margin: 0px 20px 0px 20px;
+}
