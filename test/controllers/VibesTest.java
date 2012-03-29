@@ -27,7 +27,11 @@ public class VibesTest extends FunctionalTest {
 
     @Test
     public void shouldRedirectToLatestAfterSave() {
-        Response response = POST("/vibes");
+        Map<String, String> parameters = new HashMap<String, String>();
+        parameters.put("vibe.message", "TheMessage");
+        parameters.put("vibe.author", "author");
+        Response response = POST("/vibes", parameters);
+
         assertStatus(302, response);
         assertHeaderEquals("Location", "/vibes", response);
     }
@@ -36,6 +40,7 @@ public class VibesTest extends FunctionalTest {
     public void shouldSaveMessage() {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("vibe.message", "TheMessage");
+        parameters.put("vibe.author", "author");
         POST("/vibes", parameters);
 
         Vibe savedVibe = Vibe.find("byMessage", "TheMessage").first();
@@ -46,9 +51,10 @@ public class VibesTest extends FunctionalTest {
     public void shouldFindAllMessages(){
         GET("/vibes");
         List<Vibe> vibes = (List<Vibe>) renderArgs("vibes");
-        Assert.assertThat(vibes.size(), equalTo(3));
-        Assert.assertThat(vibes.get(0).getMessage() , equalTo("blah blah"));
-        Assert.assertThat(vibes.get(1).getMessage() , equalTo("random message"));
+
+        Assert.assertThat(vibes.size(), equalTo(2));
+        Assert.assertThat(vibes.get(0).getMessage() , equalTo("Welcome all, how awesome is this?"));
+        Assert.assertThat(vibes.get(1).getMessage() , equalTo("What is going to happen on Friday?"));
     }
 
     @Test
@@ -57,6 +63,6 @@ public class VibesTest extends FunctionalTest {
         
         List<Tag> tagCloud = (List<Tag>) renderArgs("tagCloud");
         Assert.assertThat(tagCloud, notNullValue());
-        Assert.assertThat(tagCloud.size(), is(lessThanOrEqualTo(10)));
+        Assert.assertThat(tagCloud.size(), is(1));
     }
 }

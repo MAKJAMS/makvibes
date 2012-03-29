@@ -1,7 +1,18 @@
 *{ You can use plain selenium command using the selenium tag }*
 
-#{selenium}
-    // Open the home page, and check that no error occured
+#{selenium 'Show the home page'}
+    clearSession()
+
+    // Given a user goes to the home page
     open('/')
-    assertNotTitle('Application error')
+    assertTitle('Home')
+
+    assertTextPresent('Welcome to Mak Vibes')
+
+    //Then there should be a login form on the page
+    assertTextPresent('Login Name:')
+    assertTextPresent('Password:')
+
+    //And the latest vibes should also be present
+    assertTextPresent('Welcome all, how awesome is this?')
 #{/selenium}

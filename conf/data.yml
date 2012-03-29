@@ -1,26 +1,31 @@
-models.User(gavin):
-    username:   guillaume
-    password:   foobar
-    name:       Guillaume Bort
+User(demo):
+    username:       demo
+    password:       demo
+    name:           Demo User
+    role:           default
 
-models.User(demo):
-    username:   demo
-    password:   demo
-    name:       Demo User
+User(bob):
+    username:       bob
+    password:       secret
+    name:           Bob
+    role:
+        roleName:   default
 
-models.Tag(elections):
-    name:       elections
+User(sally):
+    username:       sally
+    password:       secret
+    name:           Sally Peters
+    role:
+        roleName:   student leader
 
-models.Vibe(vibe1):
-    message:    blah blah
-    postedBy:   gavin
+Vibe(message1):
+    message:        Welcome all, how awesome is this?
+    postedOn:       2009-05-10
+    author:         Timothy Smith
 
-models.Vibe(vibe2):
-    message:    random message
-    postedBy:   demo
-
-models.Vibe(vibe3):
-    message:    "heading to #elections!"
-    postedBy:   gavin
+Vibe(message2):
+    message:        What is going to happen on Friday?
+    postedOn:       2012-03-03
+    author:         Jane Gorman
     tags:
     - elections

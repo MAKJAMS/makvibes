@@ -1,8 +1,10 @@
-package model;
+package models;
 
 import models.Tag;
 import models.Vibe;
+import org.junit.Before;
 import org.junit.Test;
+import play.test.Fixtures;
 import play.test.UnitTest;
 
 import java.util.Arrays;
@@ -13,6 +15,11 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.matchers.JUnitMatchers.hasItems;
 
 public class TagTest extends UnitTest {
+    
+    @Before
+    public void setUp(){
+        Fixtures.deleteAllModels();
+    }
 
     @Test
     public void shouldRetrieveTagFromDBIfItExists() {

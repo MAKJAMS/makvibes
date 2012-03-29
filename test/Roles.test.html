@@ -1,0 +1,45 @@
+*{ You can use plain selenium command using the selenium tag }*
+
+#{selenium 'Show authors for Student Leaders'}
+    clearSession()
+
+    //Given that a student leader is logged in
+    open('/')
+    assertNotTitle('Application error')
+	assertTextPresent('Login Name:')
+	type('username', 'sally')
+	type('password', 'secret')
+	clickAndWait('login')
+
+    //When they view the home page
+    open('/vibes')
+    assertTextPresent('Welcome to Mak Vibes')
+    assertTextPresent('Vibes')
+
+    //Then they should see the vibes with the student names
+    assertTextPresent('Timothy Smith')
+    assertTextPresent('Jane Gorman')
+
+#{/selenium}
+
+#{selenium 'Do not show vibe authors for default users'}
+    clearSession()
+
+    //Given that a default user is logged in
+    open('/')
+    assertNotTitle('Application error')
+	assertTextPresent('Login Name:')
+	type('username', 'bob')
+	type('password', 'secret')
+	clickAndWait('login')
+
+    //When they view the home page
+    open('/vibes')
+    assertTextPresent('Welcome to Mak Vibes')
+    assertTextPresent('Vibes')
+
+    //Then they should not see the student names with the vibes
+    assertTextNotPresent('Timothy Smith')
+    assertTextNotPresent('Jane Gorman')
+
+#{/selenium}

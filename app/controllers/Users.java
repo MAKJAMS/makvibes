@@ -19,13 +19,14 @@ public class Users extends Application {
     
     public static void saveUser(@Valid User user, String verifyPassword) {
         validation.required(verifyPassword);
-        validation.equals(verifyPassword, user.password).message("Your password doesn't match");
+        validation.equals(verifyPassword, user.getPassword()).message("Your password doesn't match");
         if(validation.hasErrors()) {
             render("@register", user, verifyPassword);
         }
+        user.useDefaultRole();
         user.create();
         saveUserDetailsInSession(user);
-        flash.success("Welcome, " + user.name);
+        flash.success("Welcome, " + user.getName());
         Vibes.latest();
     }
     
@@ -42,7 +43,7 @@ public class Users extends Application {
     }
     private static String flashMessage(User user) {
         StringBuffer flashMessage = new StringBuffer("Welcome, ");
-        flashMessage.append(user.name);
+        flashMessage.append(user.getName());
         return flashMessage.toString();
     }
 
@@ -51,9 +52,8 @@ public class Users extends Application {
         index();
     }
 
-    
     private static void saveUserDetailsInSession(User user){
-        session.put("user", user.username);
+        session.put("user", user.getUsername());
         session.put("logged", user.id);
     }
 

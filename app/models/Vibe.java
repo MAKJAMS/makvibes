@@ -1,5 +1,7 @@
 package models;
 
+import play.data.validation.MaxSize;
+import play.data.validation.Required;
 import play.db.jpa.Model;
 
 import javax.persistence.CascadeType;
@@ -14,13 +16,18 @@ import java.util.Set;
 @Entity
 public class Vibe extends Model {
 
+    @Required
+    @MaxSize(140)
     private String message;
+
     private Date postedOn;
+
+    @Required
     @ManyToOne
     private User postedBy;
+
     @ManyToMany(cascade= CascadeType.PERSIST)
     public Set<Tag> tags;
-
 
     public Vibe(){
         this.postedOn = new Date();
