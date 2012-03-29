@@ -1,9 +1,8 @@
 #{extends 'main.html' /}
 #{set title:'MakVibes' /}
 
-#{form @save(), class:"well form-inline"}
+#{form @Vibes.save(), class:"well form-inline"}
 <div class="well" id="newMessage">
-    <input type="hidden" name="vibe.author" value="${user?.name}">
     #{field 'vibe.message'}
     <p class="${field.errorClass}">
         <input class="input-small" type="text" name="${field.name}" id="message" placeholder="what's on your mind?" value="${vibe?.message}"/>

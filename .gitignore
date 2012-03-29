@@ -1,8 +1,8 @@
 /tmp
 /modules
-/lib
 /test-result
 /logs
+/out
 MakVibes.iml
 MakVibes.ipr
 MakVibes.iws

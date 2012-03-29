@@ -22,7 +22,6 @@ public class Vibe extends Model {
 
     private Date postedOn;
 
-    @Required
     @ManyToOne
     private User postedBy;
 

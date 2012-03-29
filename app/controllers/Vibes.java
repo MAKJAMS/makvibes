@@ -15,9 +15,8 @@ public class Vibes extends Application {
     }
 
     public static void save(@Valid Vibe vibe) {
+        vibe.setPostedBy(connectedUser());
         if (!validation.hasErrors()) {
-
-            vibe.setPostedBy(connectedUser());
             vibe.save();
         }
         latest();

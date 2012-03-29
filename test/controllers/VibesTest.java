@@ -12,9 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static play.mvc.Http.Response;
 
 public class VibesTest extends FunctionalTest {
@@ -29,7 +27,6 @@ public class VibesTest extends FunctionalTest {
     public void shouldRedirectToLatestAfterSave() {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("vibe.message", "TheMessage");
-        parameters.put("vibe.author", "author");
         Response response = POST("/vibes", parameters);
 
         assertStatus(302, response);
@@ -40,7 +37,6 @@ public class VibesTest extends FunctionalTest {
     public void shouldSaveMessage() {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("vibe.message", "TheMessage");
-        parameters.put("vibe.author", "author");
         POST("/vibes", parameters);
 
         Vibe savedVibe = Vibe.find("byMessage", "TheMessage").first();

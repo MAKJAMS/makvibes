@@ -2,4 +2,4 @@
 
 require:
     - play
-    - play -> mockito 0.1
+    - play -> mockito-0.1
