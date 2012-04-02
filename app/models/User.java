@@ -35,7 +35,7 @@ public class User extends Model {
     private String name;
 
     @OneToMany(mappedBy = "postedBy", fetch = FetchType.LAZY)
-    public List<Vibe> vibes;
+    private List<Vibe> vibes;
 
     @Deprecated
     public User(String name, String password, String username, Role role) {
@@ -55,7 +55,7 @@ public class User extends Model {
     }
 
     public boolean canDelete(Vibe vibe){
-        return vibes.contains(vibe);
+        return hasModeratorAccess() || vibes.contains(vibe);
     }
 
     public String getPassword() {
@@ -94,5 +94,7 @@ public class User extends Model {
         this.role = Role.DEFAULT;
     }
 
-    
+    public List<Vibe> getVibes() {
+        return vibes;
+    }
 }

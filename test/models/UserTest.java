@@ -6,6 +6,7 @@ import play.test.UnitTest;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class UserTest extends UnitTest{
 
@@ -27,9 +28,8 @@ public class UserTest extends UnitTest{
     @Test
     public void shouldIndicateThatAVibeCanBeDeletedByTheAuthor(){
         User author = givenADefaultUserWithName();
-        Vibe vibe = new Vibe();
-        author.vibes.add(vibe);
-
+        Vibe vibe = mock(Vibe.class);
+        author.getVibes().add(vibe);
         assertTrue(author.canDelete(vibe));
     }
 
@@ -39,7 +39,19 @@ public class UserTest extends UnitTest{
         assertFalse(notTheAuthor.canDelete(new Vibe()));
     }
     
+    @Test
+    public void shouldIndicateThatAnyVibeCanBeDeletedByAStudentLeader(){
+        User studentLeader = givenAStudentLeader();
+        assertTrue(studentLeader.canDelete(new Vibe()));
+    }
+
+    private User givenAStudentLeader() {
+        Role moderator = mock(Role.class);
+        when(moderator.hasModeratorAccess()).thenReturn(true);
+        return new User("Tish", "password", "tish", moderator);
+    }
+
     public User givenADefaultUserWithName(){
-        return new User("Jane Deer", "password", "jdeer", Role.DEFAULT);
+        return new User("Jane Deer", "password", "jdeer", mock(Role.class));
     }
 }
