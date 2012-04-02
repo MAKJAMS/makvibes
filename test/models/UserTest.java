@@ -23,4 +23,23 @@ public class UserTest extends UnitTest{
         user.useDefaultRole();
         Assert.assertEquals("default", user.getRole().toString());
     }
+
+    @Test
+    public void shouldIndicateThatAVibeCanBeDeletedByTheAuthor(){
+        User author = givenADefaultUserWithName();
+        Vibe vibe = new Vibe();
+        author.vibes.add(vibe);
+
+        assertTrue(author.canDelete(vibe));
+    }
+
+    @Test
+    public void shouldIndicateThatAVibeCannotBeDeletedBySomeOtherStudent(){
+        User notTheAuthor = givenADefaultUserWithName();
+        assertFalse(notTheAuthor.canDelete(new Vibe()));
+    }
+    
+    public User givenADefaultUserWithName(){
+        return new User("Jane Deer", "password", "jdeer", Role.DEFAULT);
+    }
 }

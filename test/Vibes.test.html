@@ -1,0 +1,59 @@
+#{fixture delete:'all', load:'data.yml' /}
+
+#{selenium 'Users can delete their own vibes'}
+    clearSession()
+
+    // Given a user logs into the site
+    open('/')
+    type('username', 'demo')
+    type('password', 'demo')
+    clickAndWait('login')
+
+    // And they create a new vibe
+    store('public holiday tomorrow!', vibe)
+    type('message', $[vibe])
+    clickAndWait('update')
+    assertTextPresent($[vibe])
+
+    // They should see delete links on the vibes
+    storeAttribute(//a[@data-message='$[vibe]']@id, id)
+    assertElementPresent($[id])
+
+    // When they click the link
+    clickAndWait($[id])
+
+    // Then the vibe should be deleted
+    assertTextNotPresent($[vibe])
+#{/selenium}
+
+#{selenium 'Users cannot see the delete link on vibes they did not post'}
+    clearSession()
+
+    // Given a user logs into the site
+    open('/')
+    type('username', 'bob')
+    type('password', 'secret')
+    clickAndWait('login')
+
+    // And they create a new vibe
+    store('Vote for me, friends', vibe)
+    type('message', $[vibe])
+    clickAndWait('update')
+
+    assertTextPresent($[vibe])
+    storeAttribute(//a[@data-message='$[vibe]']@id, id)
+
+    // When another user logs in
+    clickAndWait('logout')
+    type('username', 'demo')
+    type('password', 'demo')
+    clickAndWait('login')
+
+    // And they see the posted vibe
+    assertTextPresent($[vibe])
+
+    // They should not see the delete link
+    assertElementNotPresent($[id])
+#{/selenium}
+
+

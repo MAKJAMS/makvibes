@@ -61,4 +61,13 @@ public class VibesTest extends FunctionalTest {
         Assert.assertThat(tagCloud, notNullValue());
         Assert.assertThat(tagCloud.size(), is(1));
     }
+    
+    @Test
+    public void shouldDeleteAVibe() {
+        Vibe vibe = new Vibe().save();
+        DELETE("/vibes/" + vibe.id);
+
+        vibe = Vibe.find("id = ?", vibe.id).first();
+        Assert.assertThat(vibe, nullValue());
+    }
 }

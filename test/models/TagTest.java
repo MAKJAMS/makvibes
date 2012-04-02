@@ -1,7 +1,5 @@
 package models;
 
-import models.Tag;
-import models.Vibe;
 import org.junit.Before;
 import org.junit.Test;
 import play.test.Fixtures;

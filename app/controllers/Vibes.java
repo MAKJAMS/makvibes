@@ -21,4 +21,10 @@ public class Vibes extends Application {
         }
         latest();
     }
+
+    public static void delete(long id) {
+        Vibe vibe = Vibe.findById(id);
+        vibe.delete();
+        latest();
+    }
 }

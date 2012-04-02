@@ -8,10 +8,12 @@ import play.db.jpa.Model;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name="Customer")
 public class User extends Model {
 
     @Required
@@ -32,12 +34,16 @@ public class User extends Model {
     @MaxSize(100)
     private String name;
 
+    @OneToMany(mappedBy = "postedBy", fetch = FetchType.LAZY)
+    public List<Vibe> vibes;
+
     @Deprecated
     public User(String name, String password, String username, Role role) {
         this.name = name;
         this.password = password;
         this.username = username;
         this.role = role;
+        vibes = new ArrayList<Vibe>();
     }
 
     public String toString()  {
@@ -46,6 +52,10 @@ public class User extends Model {
 
     public boolean hasModeratorAccess() {
         return role.hasModeratorAccess();
+    }
+
+    public boolean canDelete(Vibe vibe){
+        return vibes.contains(vibe);
     }
 
     public String getPassword() {

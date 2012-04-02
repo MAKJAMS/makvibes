@@ -6,7 +6,7 @@
     #{field 'vibe.message'}
     <p class="${field.errorClass}">
         <input class="input-small" type="text" name="${field.name}" id="message" placeholder="what's on your mind?" value="${vibe?.message}"/>
-        <input class="btn" type="submit" value="Update">
+        <input class="btn" type="submit" value="Update" id="update">
 
     </p>
     <span class="error">${field.error}</span>
@@ -29,7 +29,10 @@
 <div class="row">
 #{list vibes, as:'vibe'}
   <span class="span3 well">
-      <blockquote><p>${vibe.message}<small> #{if user?.hasModeratorAccess()}${vibe.postedBy.name}, #{/if}${vibe.postedOn.since()}</small></p></blockquote>
+      <blockquote>
+          <p>${vibe.message}<small> #{if user?.hasModeratorAccess()}${vibe.postedBy.name}, #{/if}${vibe.postedOn.since()}</small></p>
+      </blockquote>
+      #{if user?.canDelete(vibe)}#{a @delete(vibe.id), id: 'delete-' + vibe.id, 'data-message':vibe.message}delete#{/a}#{/if}
   </span>
 #{/list}
 </div>
